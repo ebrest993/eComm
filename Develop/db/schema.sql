@@ -15,9 +15,9 @@ CREATE TABLE product (
     id              INT             NOT NULL    PRIMARY KEY     AUTO_INCREMENT      ,
     product_name    VARCHAR(30)     NOT NULL                                        ,
     price           DECIMAL         NOT NULL                                        ,
-    stock           INT             NOT NULL    10                                  ,
-    category_id                                                                     ,
-    CONSTRAINT CK_Validation CHECK (price=DECIMAL AND stock=INT)                    ,                                                                   ,
+    stock           INT             NOT NULL                                        ,
+    category_id     INT             DEFAULT (10)                                    ,
+    -- CONSTRAINT CK_Validation CHECK (price=DECIMAL AND stock=INT)                    ,                                                                   ,
     FOREIGN KEY (category_id) REFERENCES category(id)
 );
 

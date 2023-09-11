@@ -14,9 +14,10 @@ CREATE TABLE category (
 CREATE TABLE product (
     id              INT             NOT NULL    PRIMARY KEY     AUTO_INCREMENT      ,
     product_name    VARCHAR(30)     NOT NULL                                        ,
-    price           DECIMAL         NOT NULL                    '_______________'   ,
-    stock           INT             NOT NULL    10              '_______________'   ,
-    category_id,
+    price           DECIMAL         NOT NULL                                        ,
+    stock           INT             NOT NULL    10                                  ,
+    category_id                                                                     ,
+    CONSTRAINT CK_Validation CHECK (price=DECIMAL AND stock=INT)                    ,                                                                   ,
     FOREIGN KEY (category_id) REFERENCES category(id)
 );
 
@@ -30,5 +31,4 @@ CREATE TABLE productTag (
     id              INT             NOT NULL    PRIMARY KEY     AUTO_INCREMENT      ,
     product_id      INT                                                             ,
     FOREIGN KEY (product_id) REFERENCES product(id)
-
 );

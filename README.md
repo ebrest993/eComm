@@ -1,3 +1,5 @@
+'You will want to use .then in all your routes, to make sure the promise is returned before attempting to use the data'
+
 # 13 Object-Relational Mapping (ORM): E-Commerce Back End
 
 ## Your Task

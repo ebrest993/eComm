@@ -1,3 +1,34 @@
+This is a common error when working with relational databases (mysql, sqlLite, postgreSQL, etc) basically like Ntwampe said, you are trying to delete a row that is referenced by a parent
+7:09
+So what that means:
+7:09
+In your model for Product you reference category
+    category_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'category',
+        key: 'id',
+        unique: false
+      }
+    }
+7:09
+Then in the index for all of your models you define how they are related
+7:10
+// Products belongsTo Category
+Product.belongsTo(Category, {
+  foreignKey: "category_id",
+});
+7:11
+You also define that it is one to many right under that but I am just focusing on this part of the relation ship the other piece is fine as is
+7:11
+basically when you are deleting the category, it doesn't know what to do with the products that are referencing that category so you need to tell it what to do when you delete a reference
+7:12
+https://sequelize.org/docs/v6/core-concepts/assocs/#:~:text=Various%20options%20can%20be%20passed%20as%20a%20second%20parameter (edited) 
+7:13
+So basically you need to give it an onDelete property that will tell it what to do once you delete.  You may need to reset the DB after the change is made for it to be recognized, but after you set it to one of these options based on what you want it to do, your delete should work
+7:13
+The possible choices are RESTRICT, CASCADE, NO ACTION, SET DEFAULT and SET NULL.
+
 'You will want to use .then in all your routes, to make sure the promise is returned before attempting to use the data'
 
 # 13 Object-Relational Mapping (ORM): E-Commerce Back End

@@ -45,9 +45,18 @@ router.post('/', async (req, res) => {
   }
 });
 
-// router.put('/:id', (req, res) => {
-//   // update a tag's name by its `id` value
-// });
+router.put('/:id', async (req, res) => {
+  // update a tag's name by its `id` value
+  try {
+    const tagData = await Tag.findByPk(req.params.id, {
+      include: [
+        { model: Tag }
+      ]
+    })
+  } catch (err) {
+    res.status(500).json(err);
+  }  
+});
 
 router.delete('/:id', async (req, res) => {
   // delete on tag by its `id` value
